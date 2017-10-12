@@ -2,6 +2,13 @@ const template = document.querySelector(`template`).content;
 const sections = template.querySelectorAll(`.main`);
 const mainScreen = document.querySelector(`.app`);
 
+const arrowCodes = {
+  rightArrow: 39,
+  leftArrow: 37
+};
+
+const swipeDirections = [`right`, `left`];
+
 let currentScreenNum = 0;
 
 const changeScreen = (num) => {
@@ -12,21 +19,21 @@ changeScreen(currentScreenNum);
 
 
 const swipeScreen = (direction) => {
-  if (direction === `right` && currentScreenNum < sections.length - 1) {
+  if (direction === swipeDirections[0] && currentScreenNum < sections.length - 1) {
     currentScreenNum++;
     changeScreen(currentScreenNum);
-  } else if (direction === `left` && currentScreenNum > 0) {
+  } else if (direction === swipeDirections[1] && currentScreenNum > 0) {
     currentScreenNum--;
     changeScreen(currentScreenNum);
   }
 };
 
-document.addEventListener(`keydown`, (key) => {
-  if (!key.altKey) {
+document.addEventListener(`keydown`, (event) => {
+  if (!event.altKey) {
     return;
-  } else if (key.altKey && key.keyCode === 39) {
-    swipeScreen(`right`);
-  } else if (key.altKey && key.keyCode === 37) {
-    swipeScreen(`left`);
+  } else if (event.altKey && event.keyCode === arrowCodes.rightArrow) {
+    swipeScreen(swipeDirections[0]);
+  } else if (event.altKey && event.keyCode === arrowCodes.leftArrow) {
+    swipeScreen(swipeDirections[1]);
   }
 });
