@@ -1,4 +1,10 @@
-import makeElementFromTemplate from './makeElementFromTemplate';
+import makeElementFromTemplate from './makeElementFromTemplate.js';
+import changeScreen from './changeScreen';
+import getRandomPage from './getRandomPage';
+import askCheckboxes from './askCheckboxes';
+import attemptsScreen from './attemptsScreen';
+import timeScreen from './timeScreen';
+import winScreen from './winScreen';
 
 const genresScreen = makeElementFromTemplate(`<section class="main main--level main--level-genre">
     <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
@@ -82,5 +88,19 @@ const genresScreen = makeElementFromTemplate(`<section class="main main--level m
       </form>
     </div>
   </section>`);
+
+const answerButton = genresScreen.querySelector(`.genre-answer-send`);
+const answerCheckboxes = [...genresScreen.querySelectorAll(`.genre-answer input[type=checkbox]`)];
+
+answerButton.disabled = true;
+answerCheckboxes.forEach((checkbox) => {
+  checkbox.addEventListener(`change`, () => {
+    answerButton.disabled = !answerCheckboxes.some(askCheckboxes);
+  });
+});
+
+answerButton.addEventListener(`click`, () => {
+  changeScreen(getRandomPage([winScreen, timeScreen, attemptsScreen]));
+});
 
 export default genresScreen;

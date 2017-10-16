@@ -1,4 +1,6 @@
 import makeElementFromTemplate from './makeElementFromTemplate';
+import changeScreen from './changeScreen';
+import genresScreen from './genresScreen';
 
 const artistsScreen = makeElementFromTemplate(`<section class="main main--level main--level-artist">
     <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
@@ -59,5 +61,13 @@ const artistsScreen = makeElementFromTemplate(`<section class="main main--level 
       </form>
     </div>
   </section>`);
+
+const answerOptions = [...artistsScreen.querySelectorAll(`.main-answer`)];
+
+answerOptions.forEach((answerOption) => {
+  answerOption.addEventListener(`click`, () => {
+    changeScreen(genresScreen);
+  });
+});
 
 export default artistsScreen;

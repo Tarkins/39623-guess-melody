@@ -1,7 +1,7 @@
 export const makeElementFromTemplate = (nodeHtml) => {
-  const template = document.createElement(`template`);
-  template.innerHTML = nodeHtml;
-  return template.content;
+  const divElem = document.createElement(`div`);
+  divElem.innerHTML = nodeHtml;
+  return divElem.firstElementChild;
 };
 
 export default makeElementFromTemplate;

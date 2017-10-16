@@ -1,4 +1,6 @@
 import makeElementFromTemplate from './makeElementFromTemplate';
+import changeScreen from './changeScreen';
+import artistsScreen from './artistsScreen';
 
 const welcomeScreen = makeElementFromTemplate(`<section class="main main--welcome">
     <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
@@ -11,5 +13,9 @@ const welcomeScreen = makeElementFromTemplate(`<section class="main main--welcom
     </p>
   </section>`);
 
+const playButton = welcomeScreen.querySelector(`.main-play`);
+playButton.addEventListener(`click`, () => {
+  changeScreen(artistsScreen);
+});
 
 export default welcomeScreen;
