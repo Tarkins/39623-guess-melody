@@ -96,9 +96,11 @@ const answerCheckboxes = [...genresScreen.querySelectorAll(`.genre-answer input[
 answerButton.disabled = true;
 
 genresChoice.addEventListener(`click`, (event) => {
-  if((event.target.tagName !== `INPUT`) && (event.target.tagName !== `BUTTON`)) return;
+  if ((event.target.tagName !== `INPUT`) && (event.target.tagName !== `BUTTON`)) {
+    return;
+  }
   answerButton.disabled = !answerCheckboxes.some(askCheckboxes);
-  if(event.target.tagName === `BUTTON`) {
+  if (event.target.tagName === `BUTTON`) {
     changeScreen(getRandomPage([winScreen, timeScreen, attemptsScreen]));
   }
 });
