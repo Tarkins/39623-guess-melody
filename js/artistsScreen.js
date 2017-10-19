@@ -62,12 +62,11 @@ const artistsScreen = makeElementFromTemplate(`<section class="main main--level 
     </div>
   </section>`);
 
-const answerOptions = [...artistsScreen.querySelectorAll(`.main-answer`)];
+const answersList = artistsScreen.querySelector(`.main-list`);
 
-answerOptions.forEach((answerOption) => {
-  answerOption.addEventListener(`click`, () => {
-    changeScreen(genresScreen);
-  });
+answersList.addEventListener('change', (event) => {
+  if(!event.target.classList.contains('main-answer-r')) return;
+  changeScreen(genresScreen);
 });
 
 export default artistsScreen;

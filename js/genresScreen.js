@@ -90,17 +90,18 @@ const genresScreen = makeElementFromTemplate(`<section class="main main--level m
   </section>`);
 
 const answerButton = genresScreen.querySelector(`.genre-answer-send`);
+const genresChoice = genresScreen.querySelector(`.genre`);
 const answerCheckboxes = [...genresScreen.querySelectorAll(`.genre-answer input[type=checkbox]`)];
 
 answerButton.disabled = true;
-answerCheckboxes.forEach((checkbox) => {
-  checkbox.addEventListener(`change`, () => {
-    answerButton.disabled = !answerCheckboxes.some(askCheckboxes);
-  });
+
+genresChoice.addEventListener(`click`, (event) => {
+  if((event.target.tagName !== `INPUT`) && (event.target.tagName !== `BUTTON`)) return;
+  answerButton.disabled = !answerCheckboxes.some(askCheckboxes);
+  if(event.target.tagName === `BUTTON`) {
+    changeScreen(getRandomPage([winScreen, timeScreen, attemptsScreen]));
+  }
 });
 
-answerButton.addEventListener(`click`, () => {
-  changeScreen(getRandomPage([winScreen, timeScreen, attemptsScreen]));
-});
 
 export default genresScreen;
