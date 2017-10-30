@@ -1,6 +1,6 @@
 import {mainScreen} from './main.js';
 
-export const changeScreen = (screenTitle) => {
+const changeScreen = (screenTitle) => {
   mainScreen.replaceChild(screenTitle, mainScreen.firstElementChild);
 };
 
